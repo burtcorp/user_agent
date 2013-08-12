@@ -37,6 +37,7 @@ describe UserAgent do
   test false, :opera,      '9.70',         :linux,       'Linux',          :gecko,     '20061208',   :computer, 'Mozilla/5.0 (Linux i686 ; U; en; rv:1.8.1) Gecko/20061208 Firefox/2.0.0 Opera 9.70'
   test false, :opera,      '9.64',         :linux,       'Linux',          :presto,    '2.1.1',      :computer, 'Opera/9.64 (X11; Linux i686; U; Linux Mint; it) Presto/2.1.1'
   test false, :opera,      '9.00',         :wii,         'Wii',            :unknown,    nil,         :console,  'Opera/9.00 (Nintindo Wii; U; ; 103858; Wii Shop Channel/1.0; en)'
+  test false, :opera,      '15.0.1147.153',:macintosh,   'OS X 10.8',      :webkit,    '537.36',     :computer, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.95 Safari/537.36 OPR/15.0.1147.153'
   test false, :chrome,     '6.0.472.62',   :macintosh,   'OS X 10.6',      :webkit,    '534.3',      :computer, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.3 (KHTML, like Gecko) Chrome/6.0.472.62 Safari/534.3'
   test false, :chrome,     '6.0.472.63',   :macintosh,   'OS X 10.6',      :webkit,    '534.3',      :computer, 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_4; en-US) AppleWebKit/534.3 (KHTML, like Gecko) Chrome/6.0.472.63 Safari/534.3'
   test false, :chrome,     '6.0.472.55',   :linux,       'Linux',          :webkit,    '534.3',      :computer, 'Mozilla/5.0 (X11; U; Linux i686; en-US) AppleWebKit/534.3 (KHTML, like Gecko) Chrome/6.0.472.55 Safari/534.3'
