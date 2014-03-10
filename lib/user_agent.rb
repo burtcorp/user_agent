@@ -9,6 +9,7 @@ class UserAgent
     Chrome        = /chrome/i
     Presto        = /presto/i
     Gecko         = /gecko/i
+    Trident       = /trident\/7\.0/i
     Msie          = /msie/i
   end
 
@@ -25,6 +26,7 @@ class UserAgent
     Chrome        = /chrome/i
     Safari        = /safari/i
     IE            = /msie/i
+    Trident       = /trident\/7\.0/i
     Opera         = /opera/i
     PS3           = /playstation 3/i
     PSP           = /playstation portable/i
@@ -40,7 +42,8 @@ class UserAgent
 
   module OS
     WindowsVista  = /windows nt 6\.0/i
-    Windows7      = /windows nt 6\.\d+/i
+    Windows7      = /windows nt 6\.1/i
+    Windows8      = /windows nt 6\.\d+/i
     Windows2003   = /windows nt 5\.2/i
     WindowsXP     = /windows nt 5\.1/i
     Windows2000   = /windows nt 5\.0/i
@@ -80,6 +83,7 @@ class UserAgent
       when Engines::Konqueror then :konqueror
       when Engines::Chrome    then :chrome
       when Engines::Presto    then :presto
+      when Engines::Trident   then :msie
       when Engines::Gecko     then :gecko
       when /opera/i           then :unknown
       when Engines::Msie      then :msie
@@ -89,8 +93,11 @@ class UserAgent
   end
 
   def self.engine_version(string)
-    if string =~ /#{engine(string)}[\/ ]([\d\w\.\-]+)/i
-      $1
+    case string
+      when Engines::Trident
+        '11.0'
+      else
+        $1 if string =~ /#{engine(string)}[\/ ]([\d\w\.\-]+)/i
     end
   end
 
@@ -110,6 +117,7 @@ class UserAgent
       when Browsers::Outlook     then :outlook
       when Browsers::Evolution   then :evolution
       when Browsers::IEMobile    then :iemobile
+      when Browsers::Trident     then :ie
       when Browsers::IE          then :ie
       else
         :unknown
@@ -128,6 +136,8 @@ class UserAgent
         $1 if string =~ Versions::Psp
       when :lotus
         $1 if string =~ Versions::Lotus
+      when :ie
+        (string =~ Browsers::Trident) ? '11.0' : string[/ie[\/ ]([\d\w\.\-]+)/i, 1]
       else
         $1 if string =~ /#{name}[\/ ]([\d\w\.\-]+)/i
     end
@@ -138,6 +148,7 @@ class UserAgent
       when OS::WindowsPhone  then 'Windows Phone'
       when OS::WindowsVista  then 'Windows Vista'
       when OS::Windows7      then 'Windows 7'
+      when OS::Windows8      then 'Windows 8'
       when OS::Windows2003   then 'Windows 2003'
       when OS::WindowsXP     then 'Windows XP'
       when OS::Windows2000   then 'Windows 2000'
