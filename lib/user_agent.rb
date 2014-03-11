@@ -18,14 +18,15 @@ class UserAgent
     Ps3           = /([\d\w\.\-]+)\)\s*$/i
     Psp           = /([\d\w\.\-]+)\)?\s*$/i
     Lotus         = /Lotus-Notes\/([\w.]+)/i
+    Opera         = /(?:Opera|OPR)[\/ ]([\w.]+)/i
   end
 
   module Browsers
     Konqueror     = /konqueror/i
-    Chrome        = /chrome/i
-    Safari        = /safari/i
+    Chrome        = /chrome(?!.*\bopr\/)/i
+    Safari        = /safari(?!.*\bopr\/)/i
     IE            = /msie/i
-    Opera         = /opera/i
+    Opera         = /opera|\bopr(?=\/)/i
     PS3           = /playstation 3/i
     PSP           = /playstation portable/i
     Firefox       = /firefox/i
@@ -128,6 +129,8 @@ class UserAgent
         $1 if string =~ Versions::Psp
       when :lotus
         $1 if string =~ Versions::Lotus
+      when :opera
+        $1 if string =~ Versions::Opera
       else
         $1 if string =~ /#{name}[\/ ]([\d\w\.\-]+)/i
     end
